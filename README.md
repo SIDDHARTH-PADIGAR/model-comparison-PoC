@@ -3,6 +3,8 @@
 ## Overview
 The Healthcare Disease Prediction project aims to develop machine learning models for predicting various diseases based on patient data. This project utilizes several datasets to train and evaluate models, providing insights into healthcare analytics.
 
+## Note: for details on the model comparison please refer to reports/ and healthcare-disease-prediction/notebooks/04_evaluation.ipynb
+
 ## Project Structure
 - **data/**: Contains all datasets used in the project.
   - **raw/**: Original datasets used for the project.
