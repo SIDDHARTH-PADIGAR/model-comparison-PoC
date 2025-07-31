@@ -1,0 +1,39 @@
+# Visualization Utility Scripts
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def plot_correlation_matrix(data, title='Correlation Matrix'):
+    plt.figure(figsize=(10, 8))
+    correlation = data.corr()
+    sns.heatmap(correlation, annot=True, fmt=".2f", cmap='coolwarm', square=True)
+    plt.title(title)
+    plt.show()
+
+def plot_feature_distribution(data, feature, title='Feature Distribution'):
+    plt.figure(figsize=(10, 6))
+    sns.histplot(data[feature], kde=True, bins=30)
+    plt.title(title)
+    plt.xlabel(feature)
+    plt.ylabel('Frequency')
+    plt.show()
+
+def plot_boxplot(data, feature, target, title='Boxplot'):
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x=target, y=feature, data=data)
+    plt.title(title)
+    plt.xlabel(target)
+    plt.ylabel(feature)
+    plt.show()
+
+def plot_roc_curve(fpr, tpr, title='ROC Curve'):
+    plt.figure(figsize=(10, 6))
+    plt.plot(fpr, tpr, color='blue', lw=2, label='ROC curve')
+    plt.plot([0, 1], [0, 1], color='red', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title(title)
+    plt.legend(loc='lower right')
+    plt.show()

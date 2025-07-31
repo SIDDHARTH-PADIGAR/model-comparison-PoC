@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment folders
+.env
+.venv/
+venv/
+healthcare-ml-env/
+
+# Jupyter checkpoint files
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode or PyCharm
+.vscode/
+.idea/
+
+# Model artifacts - don’t upload trained models
+healthcare-disease-prediction/models/*.pkl
+
+
+# CatBoost logs
+healthcare-disease-prediction/notebooks/catboost_info/
+
+# Processed data – better to regenerate from raw
+healthcare-disease-prediction/data/processed/
+
+# Raw data – skip if it's large or sensitive
+# If it's public or small, keep it
+# Uncomment below if needed:
+# healthcare-disease-prediction/data/raw/

@@ -1,0 +1,54 @@
+# Feature Engineering and Selection Module
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+def create_feature_engineering_pipeline(numeric_features, categorical_features):
+    """
+    Create a feature engineering pipeline that scales numeric features and encodes categorical features.
+
+    Parameters:
+    numeric_features (list): List of numeric feature names.
+    categorical_features (list): List of categorical feature names.
+
+    Returns:
+    Pipeline: A scikit-learn pipeline for feature engineering.
+    """
+    numeric_transformer = Pipeline(steps=[
+        ('scaler', StandardScaler())
+    ])
+
+    categorical_transformer = Pipeline(steps=[
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', numeric_transformer, numeric_features),
+            ('cat', categorical_transformer, categorical_features)
+        ])
+
+    return preprocessor
+
+def feature_selection(X, y, model):
+    """
+    Perform feature selection using a given model.
+
+    Parameters:
+    X (DataFrame): Feature set.
+    y (Series): Target variable.
+    model: A scikit-learn model with a feature_importances_ attribute.
+
+    Returns:
+    DataFrame: Selected features based on importance.
+    """
+    model.fit(X, y)
+    importance = model.feature_importances_
+    feature_importance = pd.DataFrame({'Feature': X.columns, 'Importance': importance})
+    selected_features = feature_importance[feature_importance['Importance'] > 0].sort_values(by='Importance', ascending=False)
+
+    return selected_features
+
+# This file is intentionally left blank.
